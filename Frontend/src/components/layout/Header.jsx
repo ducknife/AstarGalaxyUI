@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Rocket, User, ShoppingCart, LayoutDashboard, Settings, LogOut, ChevronDown } from 'lucide-react';
+import { Rocket, User, ShoppingCart, LayoutDashboard, Settings, LogOut, ChevronDown, Menu, X } from 'lucide-react';
 import { clientMenu, adminMenu, userProfileMenu } from '../ui/menu/HeaderList';
 import CustomDropdown from '../ui/dropdown/CustomDropdown';
 import FowardButton from '../ui/buttons/FowardButton';
@@ -8,9 +8,15 @@ import FowardButton from '../ui/buttons/FowardButton';
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // TODO: Replace with actual auth context later
   const isAdmin = false; 
   const activeMenu = isAdmin ? adminMenu : clientMenu;
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className="fixed top-0 left-0 w-full h-[72px] z-[100] bg-black/40 backdrop-blur-md transition-colors duration-300" id="header">
@@ -22,7 +28,7 @@ export default function Header() {
           <span className="text-[1.3rem] font-bold text-white tracking-[-0.02em]">AstarGalaxy</span>
         </Link>
 
-        <nav className="flex items-center gap-8" id="nav-menu">
+        <nav className="hidden md:flex items-center gap-8" id="nav-menu">
           {activeMenu.map(item => {
             const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
             const baseClass = "relative text-[0.9rem] font-medium cursor-pointer transition-colors duration-200 py-2 group after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[linear-gradient(135deg,#00e5ff,#00bfa5,#0097a7,#00e5ff)] after:transition-all after:duration-300 after:rounded-sm";
@@ -87,9 +93,64 @@ export default function Header() {
               <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-[linear-gradient(135deg,#00e5ff,#00bfa5,#0097a7,#00e5ff)] rounded-full text-[0.65rem] font-bold flex items-center justify-center text-white animate-pulse shadow-[0_0_10px_rgba(0,229,255,0.5)]">3</span>
             </Link>
           )}
-          <FowardButton onClick={() => navigate('/contact')} className="!shadow-none hover:!shadow-none hidden sm:block text-[0.85rem] px-5">
+          <FowardButton onClick={() => navigate('/contact')} className="!shadow-none hover:!shadow-none hidden lg:block text-[0.85rem] px-5">
             Contact
           </FowardButton>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="md:hidden flex items-center justify-center w-[42px] h-[42px] rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Overlay */}
+      <div className={`fixed inset-0 top-[72px] bg-[#111111]/95 backdrop-blur-xl z-[90] transition-all duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <div className="flex flex-col h-full overflow-y-auto px-6 py-8">
+          <div className="flex flex-col gap-6">
+            {activeMenu.map(item => {
+              const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
+              const colorClass = isActive ? "text-[#00e5ff] font-bold" : "text-white/80 font-medium";
+
+              if (item.dropdown) {
+                return (
+                  <div key={item.id} className="flex flex-col gap-4 border-b border-white/10 pb-6">
+                    <span className="text-white/50 text-sm uppercase tracking-wider">{item.label}</span>
+                    <div className="flex flex-col gap-4 pl-4 border-l border-white/10">
+                      {item.dropdownItems.map(sub => (
+                        <Link 
+                          key={sub.id} 
+                          to={sub.path}
+                          className={`text-lg ${location.pathname === sub.path ? "text-[#00e5ff]" : "text-white/80"}`}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link 
+                  key={item.id} 
+                  to={item.path} 
+                  className={`text-xl border-b border-white/10 pb-6 ${colorClass}`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <Link 
+              to="/contact" 
+              className="text-xl border-b border-white/10 pb-6 text-white/80 font-medium"
+            >
+              Contact Command
+            </Link>
+          </div>
         </div>
       </div>
     </header>
