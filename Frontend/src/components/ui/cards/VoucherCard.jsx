@@ -4,7 +4,7 @@ import SubmitButton from '../buttons/SubmitButton';
 export default function VoucherCard({ voucher, index }) {
   return (
     <div 
-      className="bg-[#1b1b1b] rounded-2xl flex overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,229,255,0.1)] h-full"
+      className="bg-[#131314] border border-white/10 hover:border-aurora-cyan rounded-2xl flex overflow-hidden group transition-all duration-300 hover:-translate-y-1 h-full"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="bg-[#00e5ff] w-28 flex flex-col items-center justify-center relative">
@@ -19,7 +19,7 @@ export default function VoucherCard({ voucher, index }) {
       <div className="p-5 flex-1 relative flex flex-col justify-center">
         <h3 className="text-[#00e5ff] font-black text-2xl mb-1">{voucher.discount}</h3>
         <div className="text-white font-medium text-[0.95rem] mb-1">{voucher.title}</div>
-        <p className="text-white/50 text-[0.8rem] mb-4">{voucher.minSpend}</p>
+        <p className="text-white/90 text-[0.8rem] mb-4">{voucher.minSpend}</p>
         <SubmitButton>
           {voucher.actionText || 'Claim'}
         </SubmitButton>

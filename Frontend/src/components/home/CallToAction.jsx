@@ -12,20 +12,20 @@ export default function CallToAction() {
       
       <div className="max-w-[1000px] mx-auto px-6 relative z-10 text-center">
         <div className="py-12 md:py-20 relative overflow-hidden">
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white mb-6">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white mb-6" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
             Ready to <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Launch?</span>
           </h2>
           
-          <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
             Join thousands of commanders who rely on AstarGalaxy for their interstellar equipment, 
             cutting-edge robotics, and secure quantum networks.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <FowardButton onClick={() => navigate('/products')} className="w-full sm:w-auto px-10 py-4 text-base font-bold shadow-[0_0_20px_rgba(0,229,255,0.3)]">
+            <FowardButton onClick={() => navigate('/products')} className="w-full sm:w-auto px-10 py-4 text-base font-bold">
               Browse Catalog
             </FowardButton>
-            <button onClick={() => navigate('/contact')} className="w-full sm:w-auto px-10 py-4 rounded-full border border-white/20 text-white font-bold hover:bg-white/5 transition-colors">
+            <button onClick={() => navigate('/contact')} className="bg-[#1b1b1b] w-full sm:w-auto px-10 py-4 rounded-full text-white font-bold hover:bg-white hover:text-black transition-colors cursor-pointer">
               Contact Command
             </button>
           </div>

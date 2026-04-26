@@ -33,10 +33,10 @@ export default function BestFeedBacks() {
     <section className="py-[120px] relative z-[1]">
       <div className="max-w-[1320px] mx-auto px-6">
         <div className="text-center mb-16 animate-[fadeInUp_0.8s_ease-out]">
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight text-white mb-4">
+          <h2 className="text-[clamp(2rem,4vw,3rem)] tracking-tight text-white mb-4" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
             Commander <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Testimonials</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
             Don't just take our word for it. Hear from elite operatives and captains who rely on our hardware across the Milky Way.
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function BestFeedBacks() {
           {feedbacks.map((fb, i) => (
             <div 
               key={fb.id} 
-              className="bg-[#1b1b1b]/60 backdrop-blur-[20px] border border-white/5 rounded-3xl p-8 hover:border-[#00e5ff]/30 transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden"
+              className="bg-[#131314] backdrop-blur-[20px] border border-white/5 rounded-3xl p-8 hover:border-[#00e5ff]/30 transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden"
               style={{ animationDelay: `${i * 0.2}s` }}
             >
               <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity text-[#00e5ff]">
@@ -62,7 +62,7 @@ export default function BestFeedBacks() {
                 ))}
               </div>
               
-              <p className="text-white/80 leading-relaxed mb-8 relative z-10">
+              <p className="text-white/90 leading-relaxed mb-8 relative z-10">
                 "{fb.text}"
               </p>
               

@@ -25,7 +25,7 @@ export default function CustomDropdown({ label, options, onSelect, selectedValue
           onClick={() => setIsOpen(!isOpen)}
           className={
             variant === 'nav' 
-              ? "inline-flex items-center gap-1 text-[0.9rem] font-medium text-white/75 hover:text-white transition-colors duration-200 py-2 group-hover:text-white"
+              ? "inline-flex items-center gap-1 text-[0.9rem] font-medium text-white hover:text-white transition-colors duration-200 py-2 group-hover:text-white"
               : "inline-flex justify-between w-full rounded-xl border border-white/10 bg-[#1b1b1b] px-4 py-3 text-sm font-medium text-white shadow-sm hover:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-[#00e5ff] transition-all duration-200"
           }
         >

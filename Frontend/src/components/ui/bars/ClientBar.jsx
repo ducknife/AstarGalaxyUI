@@ -12,7 +12,7 @@ export default function ClientBar() {
         </div>
         <div>
           <div className="font-bold text-white text-[1.05rem]">User Account</div>
-          <div className="text-[0.8rem] text-white/50 flex items-center gap-1">
+          <div className="text-[0.8rem] text-white/90 flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-[#00bfa5]"></span> Active
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function ClientBar() {
               className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                 isActive 
                   ? 'bg-[#1b1b1b] text-white' 
-                  : 'text-white/70 hover:bg-[#1b1b1b] hover:text-white'
+                  : 'text-white/90 hover:bg-[#1b1b1b] hover:text-white'
               }`}
             >
               {({ isActive }) => (

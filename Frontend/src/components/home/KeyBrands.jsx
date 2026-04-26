@@ -17,9 +17,10 @@ export default function KeyBrands() {
   return (
     <section className="py-20 relative z-[1] overflow-hidden border-y border-white/5 bg-[#1b1b1b]/30 backdrop-blur-sm">
       <div className="max-w-[1320px] mx-auto px-6 mb-10 text-center relative z-10">
-        <h2 className="text-[clamp(1.5rem,3vw,2rem)] font-bold tracking-tight text-white">
-          Trusted by <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Galactic Enterprises</span>
+        <h2 className="text-[clamp(1.8rem,3.5vw,2.5rem)] tracking-[-0.02em] mb-3 text-white" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
+          Trusted by <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Empires</span>
         </h2>
+        <p className="text-white/80 text-[1rem] font-light" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>We only stock from verified manufacturers</p>
       </div>
       
       <div className="relative w-full overflow-hidden flex">
@@ -32,7 +33,7 @@ export default function KeyBrands() {
           {[...brands, ...brands, ...brands].map((brand, index) => (
             <div 
               key={index} 
-              className="px-8 py-4 mx-4 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md whitespace-nowrap text-white/60 font-medium tracking-wide hover:text-[#00e5ff] hover:border-[#00e5ff]/50 transition-all duration-300 cursor-default"
+              className="px-8 py-4 mx-4 flex items-center justify-center bg-white/5 rounded-2xl backdrop-blur-xl whitespace-nowrap text-white/90 font-medium tracking-wider hover:text-[#00e5ff] hover:border-[#00e5ff]/50 transition-all duration-300 cursor-pointer"
             >
               {brand}
             </div>

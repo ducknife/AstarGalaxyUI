@@ -26,7 +26,7 @@ export default function ProductDetail() {
 
   return (
     <div className="pt-[100px] pb-20 min-h-screen relative z-10 max-w-[1320px] mx-auto px-6">
-      <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-white/60 hover:text-[#00e5ff] transition-colors mb-6">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-white/90 hover:text-[#00e5ff] transition-colors mb-6">
         <ArrowLeft size={16} /> Back to Catalog
       </button>
 
@@ -55,41 +55,41 @@ export default function ProductDetail() {
             <div className="flex items-center gap-1">
               <Star size={16} className="text-[#00e5ff] fill-[#00e5ff]" />
               <span className="text-white font-bold">{product.rating}</span>
-              <span className="text-white/50 text-sm ml-1">({product.reviews.length} reviews)</span>
+              <span className="text-white/90 text-sm ml-1">({product.reviews.length} reviews)</span>
             </div>
             <div className="w-px h-4 bg-white/20"></div>
-            <div className="text-white/70 text-sm">{product.sold.toLocaleString()} Sold</div>
+            <div className="text-white/90 text-sm">{product.sold.toLocaleString()} Sold</div>
           </div>
 
           <div className="text-5xl font-black bg-[linear-gradient(135deg,#00e5ff,#00bfa5)] text-transparent bg-clip-text mb-6">
             {product.price}
           </div>
 
-          <p className="text-white/80 text-lg leading-relaxed mb-8">
+          <p className="text-white/90 text-lg leading-relaxed mb-8">
             {product.shortDes}
           </p>
 
           {/* Actions */}
           <div className="flex gap-4 mb-8">
             <div className="flex items-center bg-[#1b1b1b] border border-white/10 rounded-xl overflow-hidden">
-              <button className="w-12 h-12 flex items-center justify-center text-white/70 hover:bg-white/5 hover:text-white transition-colors">-</button>
+              <button className="w-12 h-12 flex items-center justify-center text-white/90 hover:bg-white/5 hover:text-white transition-colors">-</button>
               <div className="w-12 h-12 flex items-center justify-center text-white font-bold border-x border-white/10">1</div>
-              <button className="w-12 h-12 flex items-center justify-center text-white/70 hover:bg-white/5 hover:text-white transition-colors">+</button>
+              <button className="w-12 h-12 flex items-center justify-center text-white/90 hover:bg-white/5 hover:text-white transition-colors">+</button>
             </div>
-            <button className="flex-1 bg-white/10 border border-[#00e5ff]/50 text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300">
+            <button className="flex-1 bg-[#00e5ff] cursor-pointer text-black font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300">
               <ShoppingCart size={20} /> Add to Cart
             </button>
-            <button className="w-12 h-12 bg-[#1b1b1b] border border-white/10 rounded-xl flex items-center justify-center text-white/60 hover:text-[#ff4d4f] hover:border-[#ff4d4f]/50 transition-all duration-300">
+            <button className="w-12 h-12 bg-[#1b1b1b] border border-white/10 rounded-xl flex items-center justify-center text-white/90 hover:text-[#ff4d4f] hover:border-[#ff4d4f]/50 transition-all duration-300">
               <Heart size={20} />
             </button>
           </div>
 
           {/* Guarantees */}
           <div className="bg-[#1b1b1b]/50 border border-white/5 rounded-xl p-4 flex flex-col gap-3">
-            <div className="flex items-center gap-3 text-white/70 text-sm">
+            <div className="flex items-center gap-3 text-white/90 text-sm">
               <Shield size={18} className="text-[#00e5ff]" /> 100% Authentic Galactic Tech Guarantee
             </div>
-            <div className="flex items-center gap-3 text-white/70 text-sm">
+            <div className="flex items-center gap-3 text-white/90 text-sm">
               <div className="w-[18px] h-[18px] flex items-center justify-center rounded-full bg-[#00e5ff] text-black text-[10px] font-bold">✓</div> Free Shipping across the Milky Way
             </div>
           </div>
@@ -100,21 +100,21 @@ export default function ProductDetail() {
       <div className="flex border-b border-white/10 mb-8">
         <button 
           onClick={() => setActiveTab('description')}
-          className={`px-8 py-4 font-bold text-lg transition-colors relative ${activeTab === 'description' ? 'text-[#00e5ff]' : 'text-white/50 hover:text-white'}`}
+          className={`px-8 py-4 font-bold text-lg transition-colors relative ${activeTab === 'description' ? 'text-[#00e5ff]' : 'text-white/90 hover:text-white'}`}
         >
           Description
           {activeTab === 'description' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#00e5ff]"></div>}
         </button>
         <button 
           onClick={() => setActiveTab('specs')}
-          className={`px-8 py-4 font-bold text-lg transition-colors relative ${activeTab === 'specs' ? 'text-[#00e5ff]' : 'text-white/50 hover:text-white'}`}
+          className={`px-8 py-4 font-bold text-lg transition-colors relative ${activeTab === 'specs' ? 'text-[#00e5ff]' : 'text-white/90 hover:text-white'}`}
         >
           Specifications
           {activeTab === 'specs' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#00e5ff]"></div>}
         </button>
         <button 
           onClick={() => setActiveTab('reviews')}
-          className={`px-8 py-4 font-bold text-lg transition-colors relative ${activeTab === 'reviews' ? 'text-[#00e5ff]' : 'text-white/50 hover:text-white'}`}
+          className={`px-8 py-4 font-bold text-lg transition-colors relative ${activeTab === 'reviews' ? 'text-[#00e5ff]' : 'text-white/90 hover:text-white'}`}
         >
           Reviews ({product.reviews.length})
           {activeTab === 'reviews' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#00e5ff]"></div>}
@@ -124,7 +124,7 @@ export default function ProductDetail() {
       {/* Tab Content */}
       <div className="bg-[#1b1b1b]/60 backdrop-blur-md border border-white/5 rounded-2xl p-8 min-h-[300px]">
         {activeTab === 'description' && (
-          <div className="text-white/80 leading-relaxed max-w-4xl text-lg">
+          <div className="text-white/90 leading-relaxed max-w-4xl text-lg">
             {product.desc}
           </div>
         )}
@@ -133,7 +133,7 @@ export default function ProductDetail() {
           <div className="max-w-3xl">
             {product.specs.map((spec, i) => (
               <div key={i} className="flex border-b border-white/5 last:border-0">
-                <div className="w-1/3 py-4 text-white/50">{spec[0]}</div>
+                <div className="w-1/3 py-4 text-white/90">{spec[0]}</div>
                 <div className="w-2/3 py-4 text-white font-medium">{spec[1]}</div>
               </div>
             ))}
@@ -148,12 +148,12 @@ export default function ProductDetail() {
                 <div className="flex gap-1 justify-center mb-1">
                   {[...Array(5)].map((_, i) => <Star key={i} size={16} className={i < 5 ? "text-[#00e5ff] fill-[#00e5ff]" : "text-white/20"} />)}
                 </div>
-                <div className="text-white/50 text-sm">{product.reviews.length} Ratings</div>
+                <div className="text-white/90 text-sm">{product.reviews.length} Ratings</div>
               </div>
               <div className="flex-1">
                 {[5, 4, 3, 2, 1].map(stars => (
                   <div key={stars} className="flex items-center gap-3 mb-1">
-                    <div className="flex items-center gap-1 w-12 text-sm text-white/70">{stars} <Star size={12} className="fill-current" /></div>
+                    <div className="flex items-center gap-1 w-12 text-sm text-white/90">{stars} <Star size={12} className="fill-current" /></div>
                     <div className="flex-1 h-2 bg-black rounded-full overflow-hidden">
                       <div className="h-full bg-[#00e5ff]" style={{ width: stars === 5 ? '80%' : stars === 4 ? '20%' : '0%' }}></div>
                     </div>
@@ -175,9 +175,9 @@ export default function ProductDetail() {
                         {[...Array(5)].map((_, i) => <Star key={i} size={12} className={i < review.rating ? "text-[#00e5ff] fill-[#00e5ff]" : "text-white/20"} />)}
                       </div>
                     </div>
-                    <div className="ml-auto text-white/40 text-sm">{review.date}</div>
+                    <div className="ml-auto text-white/90 text-sm">{review.date}</div>
                   </div>
-                  <p className="text-white/80">{review.text}</p>
+                  <p className="text-white/90">{review.text}</p>
                 </div>
               ))}
             </div>

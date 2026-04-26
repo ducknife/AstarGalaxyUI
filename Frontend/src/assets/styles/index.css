@@ -137,3 +137,22 @@ body::after {
     );
   transition: background 0.3s ease-out;
 }
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(calc(-50% - 20px));
+  }
+}
+
+.animate-planet-float {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

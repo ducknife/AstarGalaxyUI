@@ -25,14 +25,14 @@ export default function Header() {
           <div className="w-10 h-10 rounded-full bg-[linear-gradient(135deg,#00e5ff,#00bfa5,#0097a7,#00e5ff)] flex items-center justify-center text-white shadow-[0_0_30px_rgba(0,229,255,0.15)] animate-[spin_12s_linear_infinite]">
             <Rocket size={20} />
           </div>
-          <span className="text-[1.3rem] font-bold text-white tracking-[-0.02em]">AstarGalaxy</span>
+          <span className="text-[1.3rem] text-white tracking-[-0.02em]">AstarGalaxy</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8" id="nav-menu">
+        <nav className="hidden lg:flex items-center gap-8" id="nav-menu">
           {activeMenu.map(item => {
             const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
             const baseClass = "relative text-[0.9rem] font-medium cursor-pointer transition-colors duration-200 py-2 group after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[linear-gradient(135deg,#00e5ff,#00bfa5,#0097a7,#00e5ff)] after:transition-all after:duration-300 after:rounded-sm";
-            const colorClass = isActive ? "text-white after:w-full" : "text-white/75 hover:text-white after:w-0 hover:after:w-full";
+            const colorClass = isActive ? "text-white after:w-full" : "text-white hover:text-white after:w-0 hover:after:w-full";
 
             if (item.dropdown) {
               return (
@@ -70,13 +70,13 @@ export default function Header() {
                 userProfileMenu.map(item => {
                   const Icon = item.icon;
                   return (
-                    <Link key={item.id} className="flex items-center gap-2 px-2.5 py-2 text-white/80 text-[0.85rem] rounded-lg transition-colors duration-200 cursor-pointer hover:bg-white/10 hover:text-[#00e5ff]" to={item.path}>
+                    <Link key={item.id} className="flex items-center gap-2 px-2.5 py-2 text-white/90 text-[0.85rem] rounded-lg transition-colors duration-200 cursor-pointer hover:bg-white/10 hover:text-[#00e5ff]" to={item.path}>
                       <Icon size={16} /> {item.label}
                     </Link>
                   );
                 })
               ) : (
-                <Link className="flex items-center gap-2 px-2.5 py-2 text-white/80 text-[0.85rem] rounded-lg transition-colors duration-200 cursor-pointer hover:bg-white/10 hover:text-[#00e5ff]" to="/admin">
+                <Link className="flex items-center gap-2 px-2.5 py-2 text-white/90 text-[0.85rem] rounded-lg transition-colors duration-200 cursor-pointer hover:bg-white/10 hover:text-[#00e5ff]" to="/admin">
                   <LayoutDashboard size={16} /> Admin Dashboard
                 </Link>
               )}
@@ -88,7 +88,7 @@ export default function Header() {
             </div>
           </div>
           {!isAdmin && (
-            <Link to="/cart" className="relative w-[42px] h-[42px] flex items-center justify-center rounded-full bg-white/10 border border-white/15 text-white/70 cursor-pointer transition-all duration-200 hover:bg-white/15 hover:text-white hover:border-white/30" id="cart-btn" aria-label="Cart">
+            <Link to="/cart" className="relative w-[42px] h-[42px] flex items-center justify-center rounded-full bg-white/10 border border-white/15 text-white/90 cursor-pointer transition-all duration-200 hover:bg-white/15 hover:text-white hover:border-white/30" id="cart-btn" aria-label="Cart">
               <ShoppingCart size={20} />
               <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-[linear-gradient(135deg,#00e5ff,#00bfa5,#0097a7,#00e5ff)] rounded-full text-[0.65rem] font-bold flex items-center justify-center text-white animate-pulse shadow-[0_0_10px_rgba(0,229,255,0.5)]">3</span>
             </Link>
@@ -99,7 +99,7 @@ export default function Header() {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden flex items-center justify-center w-[42px] h-[42px] rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+            className="lg:hidden flex items-center justify-center w-[42px] h-[42px] rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -109,23 +109,23 @@ export default function Header() {
       </div>
 
       {/* Mobile Navigation Overlay */}
-      <div className={`fixed inset-0 top-[72px] bg-[#111111]/95 backdrop-blur-xl z-[90] transition-all duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      <div className={`absolute top-[72px] left-0 w-full h-[calc(100vh-72px)] bg-[#111111]/95 backdrop-blur-xl transition-all duration-300 lg:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <div className="flex flex-col h-full overflow-y-auto px-6 py-8">
           <div className="flex flex-col gap-6">
             {activeMenu.map(item => {
               const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
-              const colorClass = isActive ? "text-[#00e5ff] font-bold" : "text-white/80 font-medium";
+              const colorClass = isActive ? "text-[#00e5ff] font-bold" : "text-white/90 font-medium";
 
               if (item.dropdown) {
                 return (
                   <div key={item.id} className="flex flex-col gap-4 border-b border-white/10 pb-6">
-                    <span className="text-white/50 text-sm uppercase tracking-wider">{item.label}</span>
+                    <span className="text-white/90 text-sm uppercase tracking-wider">{item.label}</span>
                     <div className="flex flex-col gap-4 pl-4 border-l border-white/10">
                       {item.dropdownItems.map(sub => (
                         <Link 
                           key={sub.id} 
                           to={sub.path}
-                          className={`text-lg ${location.pathname === sub.path ? "text-[#00e5ff]" : "text-white/80"}`}
+                          className={`text-lg ${location.pathname === sub.path ? "text-[#00e5ff]" : "text-white/90"}`}
                         >
                           {sub.label}
                         </Link>
@@ -146,7 +146,8 @@ export default function Header() {
             })}
             <Link 
               to="/contact" 
-              className="text-xl border-b border-white/10 pb-6 text-white/80 font-medium"
+              className="text-xl border-b border-white/10 pb-6 text-white/90 font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact Command
             </Link>

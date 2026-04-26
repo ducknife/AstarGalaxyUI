@@ -29,8 +29,8 @@ export default function HighlightProducts() {
             <section className="py-[100px] relative z-[1]" id="products-section">
                 <div className="max-w-[1320px] mx-auto px-6 relative z-[1]">
                     <div className="text-center mb-[60px]">
-                        <h2 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold tracking-[-0.02em] mb-3 text-white">Featured <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Products</span></h2>
-                        <p className="text-white/75 text-[1rem] font-light">Cutting-edge technology, designed from the future</p>
+                        <h2 className="text-[clamp(1.8rem,3.5vw,2.5rem)] tracking-[-0.02em] mb-3 text-white" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>Featured <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Products</span></h2>
+                        <p className="text-white text-[1rem] font-light" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>Cutting-edge technology, designed from the future</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {products.map((p, i) => (

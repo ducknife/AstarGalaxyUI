@@ -7,7 +7,7 @@ export default function ProductCard({ product, onSelect }) {
   const navigate = useNavigate();
   return (
     <div
-      className="group relative bg-[#1b1b1b] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-[6px] hover:shadow-[0_0_40px_rgba(0,229,255,0.12),0_0_80px_rgba(0,191,165,0.06)] animate-[fadeInUp_0.6s_ease-out_backwards] h-full flex flex-col"
+      className="group relative border border-white/10 hover:border-aurora-cyan bg-[#131314] rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-[6px] animate-[fadeInUp_0.6s_ease-out_backwards] h-full flex flex-col"
     >
       <div
         className="absolute -inset-[1px] rounded-inherit p-[1px] bg-[linear-gradient(135deg,#00e5ff,#00bfa5,#0097a7,#00e5ff)] opacity-0 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none"

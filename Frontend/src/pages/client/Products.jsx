@@ -26,7 +26,7 @@ export default function Products() {
 
   return (
     <div className="pt-[100px] pb-20 min-h-screen relative z-10 max-w-[1320px] mx-auto px-6">
-      <h1 className="text-3xl font-bold text-white mb-2">
+      <h1 className="text-3xl text-white mb-2" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>
         {category ? (
           <>
             Category: <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
@@ -37,7 +37,7 @@ export default function Products() {
           </>
         )}
       </h1>
-      <p className="text-white/60 mb-8">Browse our advanced catalog from across the galaxy.</p>
+      <p className="text-white/90 mb-8" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>Browse our advanced catalog from across the galaxy.</p>
       
       {/* Filters & Sorting */}
       <div className="flex gap-4 mb-8 p-4 rounded-xl">
@@ -49,7 +49,7 @@ export default function Products() {
             onSelect={setSortOption}
           />
         </div>
-        <button className="bg-[#1b1b1b] hover:bg-[#252525] text-white rounded-xl px-6 py-3 border border-white/10 transition-colors font-medium">Filters</button>
+        <button className="bg-[#1b1b1b] hover:bg-[#252525] text-white rounded-xl px-6 py-3 border border-white/10 transition-colors font-medium cursor-pointer">Filters</button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

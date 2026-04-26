@@ -23,13 +23,14 @@ export default function ParticleGrid() {
 
     const ctx = canvas.getContext('2d')
     const dpr = window.devicePixelRatio || 1
-    
+
     // ─── Configuration ───
-    const DOT_SPACING = 13          // max density
+    const DOT_SPACING = 16          // max density
     const DOT_RADIUS = 1.0
     const DOT_OPACITY = 0.18
-    const INFLUENCE_RADIUS = 600   // wider area of effect
-    const MAX_DISPLACEMENT = 14
+    const INFLUENCE_RADIUS = 400   // wider area of effect
+    const MAX_DISPLACEMENT_X = 80  // Wide black hole
+    const MAX_DISPLACEMENT_Y = 20  // Shorter height (original was 14)
     const MOUSE_SMOOTH = 0.28      // very smooth cursor trail
 
     // Pure lerp — same speed both ways (expand = contract)
@@ -44,16 +45,16 @@ export default function ParticleGrid() {
     function initDots() {
       const w = window.innerWidth
       const h = window.innerHeight
-      
+
       canvas.width = w * dpr
       canvas.height = h * dpr
       canvas.style.width = w + 'px'
       canvas.style.height = h + 'px'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      
+
       cols = Math.ceil(w / DOT_SPACING) + 2
       rows = Math.ceil(h / DOT_SPACING) + 2
-      
+
       const offsetX = (w - (cols - 1) * DOT_SPACING) / 2
       const offsetY = (h - (rows - 1) * DOT_SPACING) / 2
 
@@ -96,11 +97,13 @@ export default function ParticleGrid() {
           const dist = Math.sqrt(dist2)
           const t = 1 - dist / INFLUENCE_RADIUS
           // Quadratic falloff
-          const force = t * t * MAX_DISPLACEMENT
+          const t2 = t * t
+          const forceX = t2 * MAX_DISPLACEMENT_X
+          const forceY = t2 * MAX_DISPLACEMENT_Y
           const nx = dx / dist
           const ny = dy / dist
-          targetX = dot.gx + nx * force
-          targetY = dot.gy + ny * force
+          targetX = dot.gx + nx * forceX
+          targetY = dot.gy + ny * forceY
           lerpFactor = LERP_OUT
         }
 
@@ -113,34 +116,22 @@ export default function ParticleGrid() {
     function render() {
       const w = canvas.width / dpr
       const h = canvas.height / dpr
-      
+
       ctx.clearRect(0, 0, w, h)
 
       for (let i = 0; i < dots.length; i++) {
         const dot = dots[i]
-        
+
         const dispX = dot.x - dot.gx
         const dispY = dot.y - dot.gy
         const disp = Math.sqrt(dispX * dispX + dispY * dispY)
-        
-        // Vivid cyan glow on displaced dots (product_drone palette)
-        let cr = 255, cg = 255, cb = 255
-        if (disp > 0.3) {
-          // t = proximity to mouse center (0=edge, 1=center of influence)
-          const t = Math.min(disp / MAX_DISPLACEMENT, 1)
-          // Cyan #00e5ff at full displacement, teal #00bfa5 at mid
-          const ar = 0
-          const ag = Math.round(229 * t + 191 * (1 - t))   // 229→191
-          const ab = Math.round(255 * t + 165 * (1 - t))   // 255→165
-          const blend = t * 0.88                            // strong vivid color
-          cr = Math.round(255 * (1 - blend) + ar * blend)
-          cg = Math.round(255 * (1 - blend) + ag * blend)
-          cb = Math.round(255 * (1 - blend) + ab * blend)
-        }
 
-        // Displaced dots: brighter + cyan color only, size stays fixed
-        const extraBright = Math.min(disp / MAX_DISPLACEMENT, 1) * 0.65
-        const opacity = Math.min(DOT_OPACITY + extraBright, 0.90)
+        // Soft space color for dots (cyan-blue tint)
+        let cr = 100, cg = 200, cb = 255
+
+        // Slightly increase opacity when pushed, but no blinding glow
+        const extraBright = Math.min(disp / MAX_DISPLACEMENT_X, 1) * 0.15
+        const opacity = Math.min(DOT_OPACITY + extraBright, 0.40)
         const radius = DOT_RADIUS  // ← constant, never changes
 
         ctx.beginPath()
@@ -196,7 +187,7 @@ export default function ParticleGrid() {
 
   return (
     <>
-      <div 
+      <div
         ref={auroraRef}
         className="particle-aurora"
         style={{ '--aurora-x': '50%', '--aurora-y': '50%' }}

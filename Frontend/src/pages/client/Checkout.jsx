@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ShieldCheck, Truck, CreditCard, Ticket } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Truck, CreditCard, Ticket, Check } from 'lucide-react';
 import SubmitButton from '../../components/ui/buttons/SubmitButton';
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const [shippingMethod, setShippingMethod] = useState('warp');
+
+  const shippingOptions = [
+    { id: 'standard', name: 'Standard Interstellar', price: 50, time: '3-5 Earth Days' },
+    { id: 'warp', name: 'Warp Drive Express', price: 150, time: 'Estimated: 28/04/2026 - 30/04/2026' },
+    { id: 'quantum', name: 'Quantum Teleportation', price: 500, time: 'Instant Delivery' },
+  ];
+
+  const currentShipping = shippingOptions.find(opt => opt.id === shippingMethod);
+  const subtotal = 12000;
+  const shippingFee = currentShipping?.price || 0;
+  const total = subtotal + shippingFee;
 
   return (
     <div className="pt-[100px] pb-20 min-h-screen relative z-10 max-w-[1320px] mx-auto px-6">
       <button 
         onClick={() => navigate(-1)} 
-        className="flex items-center gap-2 text-white/70 hover:text-white mb-6 transition-colors"
+        className="flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
       >
         <ArrowLeft size={20} />
         <span>Back</span>
       </button>
 
-      <h1 className="text-3xl font-bold text-white mb-8 border-b border-white/10 pb-4">Order <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Confirmation</span></h1>
+      <h1 className="text-3xl text-white mb-8 border-b border-white/10 pb-4" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>Order <span className="bg-[linear-gradient(135deg,#ffffff,#b3ffff,#ffffff)] text-transparent bg-clip-text" style={{ filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.9))' }}>Confirmation</span></h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
@@ -29,7 +41,7 @@ export default function Checkout() {
               </div>
               <div className="flex-1">
                 <div className="font-bold text-lg text-white mb-1">Astar Cargo Drone V2</div>
-                <div className="text-sm text-white/50 mb-2">Provider: AstarTech Heavy Industries</div>
+                <div className="text-sm text-white/90 mb-2">Provider: AstarTech Heavy Industries</div>
                 <div className="text-[#00e5ff] font-bold">$12,000.00</div>
               </div>
             </div>
@@ -40,28 +52,61 @@ export default function Checkout() {
             <h2 className="text-xl font-bold text-white mb-4">Shipping Address</h2>
             <div className="bg-white/5 p-4 rounded-xl border border-white/10">
               <div className="font-bold text-white mb-1">Commander Niev</div>
-              <div className="text-white/70 text-sm mb-1">(+84) 987 654 321</div>
-              <div className="text-white/70 text-sm">Kepler-186f Space Station, Sector 7G</div>
+              <div className="text-white/90 text-sm mb-1">(+84) 987 654 321</div>
+              <div className="text-white/90 text-sm">Kepler-186f Space Station, Sector 7G</div>
             </div>
             <button className="text-[#00e5ff] text-sm font-bold mt-3 hover:underline">Change Address</button>
           </div>
 
           {/* Delivery & Warranty */}
           <div className="bg-[#1b1b1b]/60 backdrop-blur-[20px] border border-white/5 rounded-2xl p-6">
-            <h2 className="text-xl font-bold text-white mb-4">Delivery Information</h2>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Truck className="text-[#00e5ff] mt-0.5 shrink-0" size={20} />
-                <div>
-                  <div className="text-white font-medium">Super-fast Transport (Warp Drive)</div>
-                  <div className="text-white/50 text-sm">Estimated delivery: 28/04/2026 - 30/04/2026</div>
-                </div>
-              </div>
+            <h2 className="text-xl font-bold text-white mb-4">Shipping Method</h2>
+            <div className="space-y-3">
+              {shippingOptions.map(option => (
+                <label 
+                  key={option.id}
+                  className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-colors ${
+                    shippingMethod === option.id 
+                      ? 'bg-[#00e5ff]/10 border-[#00e5ff]' 
+                      : 'bg-white/5 border-white/10 hover:border-white/30'
+                  }`}
+                >
+                  <input 
+                    type="radio" 
+                    name="shipping" 
+                    value={option.id}
+                    checked={shippingMethod === option.id}
+                    onChange={(e) => setShippingMethod(e.target.value)}
+                    className="hidden"
+                  />
+                  {/* Custom Check Radio */}
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 shrink-0 ${
+                    shippingMethod === option.id ? 'bg-[#00e5ff] border-[#00e5ff]' : 'border-white/40'
+                  }`}>
+                    <Check size={12} strokeWidth={4} className={`text-black transition-transform duration-200 ${
+                      shippingMethod === option.id ? 'scale-100' : 'scale-0'
+                    }`} />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-white font-medium flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Truck size={16} className={shippingMethod === option.id ? 'text-[#00e5ff]' : 'text-white/50'} />
+                        {option.name}
+                      </div>
+                      <span className="text-[#00e5ff] font-bold">${option.price}.00</span>
+                    </div>
+                    <div className="text-white/70 text-sm mt-1">{option.time}</div>
+                  </div>
+                </label>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-white/5 space-y-4">
               <div className="flex items-start gap-3">
                 <ShieldCheck className="text-green-400 mt-0.5 shrink-0" size={20} />
                 <div>
                   <div className="text-white font-medium">Astar Care+ Warranty</div>
-                  <div className="text-white/50 text-sm">2-year warranty for quantum core engine</div>
+                  <div className="text-white/90 text-sm">2-year warranty for quantum core engine</div>
                 </div>
               </div>
             </div>
@@ -75,26 +120,26 @@ export default function Checkout() {
             
             <div className="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10 mb-6 cursor-pointer hover:bg-white/10 transition-colors">
               <Ticket className="text-[#00e5ff]" size={20} />
-              <div className="flex-1 text-sm text-white/80">Select or enter Voucher code</div>
+              <div className="flex-1 text-sm text-white/90">Select or enter Voucher code</div>
               <div className="text-[#00e5ff] font-bold text-lg">&rsaquo;</div>
             </div>
 
             <div className="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10 mb-6 cursor-pointer hover:bg-white/10 transition-colors">
               <CreditCard className="text-[#00e5ff]" size={20} />
-              <div className="flex-1 text-sm text-white/80">Payment Method</div>
+              <div className="flex-1 text-sm text-white/90">Payment Method</div>
               <div className="text-[#00e5ff] font-bold text-lg">&rsaquo;</div>
             </div>
 
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between text-white/70">
+              <div className="flex justify-between text-white/90">
                 <span>Subtotal</span>
-                <span>$12,000.00</span>
+                <span>${subtotal.toLocaleString()}.00</span>
               </div>
-              <div className="flex justify-between text-white/70">
+              <div className="flex justify-between text-white/90">
                 <span>Shipping Fee</span>
-                <span>$50.00</span>
+                <span>${shippingFee.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-white/70">
+              <div className="flex justify-between text-white/90">
                 <span>Voucher Discount</span>
                 <span className="text-green-400">-$0.00</span>
               </div>
@@ -104,7 +149,7 @@ export default function Checkout() {
             
             <div className="flex justify-between text-white font-bold text-lg mb-6">
               <span>Total Amount</span>
-              <span className="text-[#00e5ff] text-2xl">$12,050.00</span>
+              <span className="text-[#00e5ff] text-2xl">${total.toLocaleString()}.00</span>
             </div>
             
             <SubmitButton 

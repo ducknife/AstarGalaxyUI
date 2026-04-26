@@ -39,7 +39,7 @@ export default function Chatbot() {
       <div className={`hidden md:flex flex-col bg-[#1b1b1b] shrink-0 transition-[width] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden ${isSidebarOpen ? 'w-[300px]' : 'w-[68px]'}`}>
         
         <div className="h-16 flex items-center shrink-0 px-3">
-          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="w-[44px] h-[44px] flex items-center justify-center hover:bg-white/10 rounded-full transition-colors text-white/80 shrink-0">
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="w-[44px] h-[44px] flex items-center justify-center hover:bg-white/10 rounded-full transition-colors text-white/90 shrink-0">
             <Menu size={20} />
           </button>
         </div>
@@ -54,12 +54,12 @@ export default function Chatbot() {
         </div>
 
         <div className={`flex-1 overflow-y-auto px-3 pt-6 transition-opacity duration-200 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 invisible'}`}>
-          <div className="px-3 py-2 text-[0.8rem] font-medium text-white/80">
+          <div className="px-3 py-2 text-[0.8rem] font-medium text-white/90">
             Recent Chats
           </div>
           <div className="space-y-1 mt-1">
             {['Magical E-commerce Web Design...', 'Improve sleep and reduce sensitivity', 'Spring Proxy: Mechanism and errors', 'Manage Git Remote Repository', 'Troubleshoot AgentOS Boot Issue'].map((chat, i) => (
-              <button key={i} className="w-full text-left px-3 py-2.5 text-[0.85rem] text-white/70 hover:bg-white/5 hover:text-white rounded-full truncate transition-colors">
+              <button key={i} className="w-full text-left px-3 py-2.5 text-[0.85rem] text-white/90 hover:bg-white/5 hover:text-white rounded-full truncate transition-colors">
                 {chat}
               </button>
             ))}
@@ -67,7 +67,7 @@ export default function Chatbot() {
         </div>
 
         <div className="p-3 mt-auto shrink-0">
-          <button className="h-[44px] w-full rounded-full hover:bg-white/5 flex items-center text-[0.85rem] text-white/80 transition-colors overflow-hidden" style={{ width: isSidebarOpen ? '100%' : '44px' }}>
+          <button className="h-[44px] w-full rounded-full hover:bg-white/5 flex items-center text-[0.85rem] text-white/90 transition-colors overflow-hidden" style={{ width: isSidebarOpen ? '100%' : '44px' }}>
             <div className="w-[44px] h-[44px] flex items-center justify-center shrink-0">
               <Settings size={18} />
             </div>
@@ -114,11 +114,11 @@ export default function Chatbot() {
                       <Sparkles size={16} />
                     </div>
                   ) : (
-                    <div className="w-8 h-8 rounded-full bg-white/10 shrink-0 flex items-center justify-center text-white/70">
+                    <div className="w-8 h-8 rounded-full bg-white/10 shrink-0 flex items-center justify-center text-white/90">
                       <User size={16} />
                     </div>
                   )}
-                  <div className={`flex-1 text-[1rem] leading-relaxed pt-1 ${msg.sender === 'user' ? 'text-white/90' : 'text-white/80'}`}>
+                  <div className={`flex-1 text-[1rem] leading-relaxed pt-1 ${msg.sender === 'user' ? 'text-white/90' : 'text-white/90'}`}>
                     {msg.text}
                   </div>
                 </div>
@@ -133,10 +133,10 @@ export default function Chatbot() {
           <div className="max-w-4xl mx-auto pointer-events-auto">
             <div className="bg-[#1b1b1b] backdrop-blur-xl rounded-3xl min-h-[60px] flex items-end p-2 focus-within:border-[#00e5ff]/50 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
               <div className="flex gap-1 shrink-0 pb-1">
-                <button className="w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:bg-white/10 transition-colors">
+                <button className="w-10 h-10 rounded-full flex items-center justify-center text-white/90 hover:bg-white/10 transition-colors">
                   <Plus size={22} />
                 </button>
-                <button className="px-3 h-10 rounded-full flex items-center gap-2 text-white/70 hover:bg-white/10 transition-colors text-sm">
+                <button className="px-3 h-10 rounded-full flex items-center gap-2 text-white/90 hover:bg-white/10 transition-colors text-sm">
                   <PenTool size={18} /> Tools
                 </button>
               </div>
@@ -151,15 +151,15 @@ export default function Chatbot() {
                   }
                 }}
                 placeholder="Ask Astar AI"
-                className="flex-1 bg-[#1b1b1b] border-none outline-none text-white px-4 py-3 max-h-[200px] min-h-[44px] resize-none overflow-y-auto placeholder:text-white/40 text-[1rem]"
+                className="flex-1 bg-[#1b1b1b] border-none outline-none text-white px-4 py-3 max-h-[200px] min-h-[44px] resize-none overflow-y-auto placeholder:text-[#00e5ff] text-[1rem]"
                 rows={1}
               />
 
               <div className="flex gap-2 shrink-0 pb-1 pr-1">
-                <div className="flex items-center text-white/50 text-xs px-2 cursor-pointer hover:text-white/80">
+                <div className="flex items-center text-white/90 text-xs px-2 cursor-pointer hover:text-white/90">
                   Pro <ChevronRight size={14} className="ml-1 rotate-90" />
                 </div>
-                <button className="w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:bg-white/10 transition-colors">
+                <button className="w-10 h-10 rounded-full flex items-center justify-center text-white/90 hover:bg-white/10 transition-colors">
                   <Mic size={20} />
                 </button>
                 {input.trim() && (
@@ -172,7 +172,7 @@ export default function Chatbot() {
                 )}
               </div>
             </div>
-            <div className="text-center mt-3 text-[0.75rem] text-white/40">
+            <div className="text-center mt-3 text-[0.75rem] text-white/90">
               Astar AI may provide inaccurate information, so please double-check its responses.
             </div>
           </div>
