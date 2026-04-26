@@ -56,7 +56,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-5">
-          <div className="relative group/profile">
+          <div className="relative group/profile hidden lg:block">
             <button className="relative w-[42px] h-[42px] flex items-center justify-center rounded-full bg-black/40 border-2 border-[#00e5ff] cursor-pointer transition-all duration-200 hover:shadow-[0_0_15px_rgba(0,229,255,0.4)] overflow-hidden" id="profile-btn" aria-label="Profile">
               <img src="https://i.pravatar.cc/150?img=33" alt="User Avatar" className="w-full h-full object-cover" />
             </button>
@@ -151,6 +151,44 @@ export default function Header() {
             >
               Contact Command
             </Link>
+
+            {/* ClientBar / User Account Menu for Mobile */}
+            <div className="mt-2 pt-4">
+              <span className="text-[#00e5ff] text-sm uppercase tracking-wider font-bold mb-6 block">User Account</span>
+              <div className="flex flex-col gap-6">
+                {!isAdmin ? (
+                  userProfileMenu.map(item => {
+                    const Icon = item.icon;
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <Link 
+                        key={item.id}
+                        to={item.path}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center gap-3 text-xl ${isActive ? 'text-[#00e5ff] font-bold' : 'text-white/90 font-medium'}`}
+                      >
+                        <Icon size={24} className={isActive ? 'text-[#00e5ff]' : 'text-white/70'} />
+                        {item.label}
+                      </Link>
+                    );
+                  })
+                ) : (
+                  <Link 
+                    to="/admin" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 text-xl text-[#00e5ff] font-bold"
+                  >
+                    <LayoutDashboard size={24} />
+                    Admin Dashboard
+                  </Link>
+                )}
+                
+                <button className="flex items-center gap-3 text-xl text-[#ff4d4f] font-medium mt-2">
+                  <LogOut size={24} />
+                  Sign Out
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
