@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Rocket, User, ShoppingCart, LayoutDashboard, Settings, LogOut, ChevronDown, Menu, X } from 'lucide-react';
+import { Rocket, User, ShoppingCart, LayoutDashboard, Settings, LogOut, ChevronDown, Menu, X, Bell } from 'lucide-react';
 import { clientMenu, adminMenu, userProfileMenu } from '../ui/menu/HeaderList';
 import CustomDropdown from '../ui/dropdown/CustomDropdown';
 import FowardButton from '../ui/buttons/FowardButton';
@@ -56,6 +56,8 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-5">
+
+
           <div className="relative group/profile hidden lg:block">
             <button className="relative w-[42px] h-[42px] flex items-center justify-center rounded-full bg-black/40 border-2 border-[#00e5ff] cursor-pointer transition-all duration-200 hover:shadow-[0_0_15px_rgba(0,229,255,0.4)] overflow-hidden" id="profile-btn" aria-label="Profile">
               <img src="https://i.pravatar.cc/150?img=33" alt="User Avatar" className="w-full h-full object-cover" />
@@ -70,8 +72,15 @@ export default function Header() {
                 userProfileMenu.map(item => {
                   const Icon = item.icon;
                   return (
-                    <Link key={item.id} className="flex items-center gap-2 px-2.5 py-2 text-white/90 text-[0.85rem] rounded-lg transition-colors duration-200 cursor-pointer hover:bg-white/10 hover:text-[#00e5ff]" to={item.path}>
-                      <Icon size={16} /> {item.label}
+                    <Link key={item.id} className="flex items-center justify-between px-2.5 py-2 text-white/90 text-[0.85rem] rounded-lg transition-colors duration-200 cursor-pointer hover:bg-white/10 hover:text-[#00e5ff] group" to={item.path}>
+                      <div className="flex items-center gap-2">
+                        <Icon size={16} /> {item.label}
+                      </div>
+                      {item.badge && (
+                        <span className="w-[18px] h-[18px] flex items-center justify-center bg-red-500 text-white text-[10px] font-bold rounded-full border border-black shadow-[0_0_8px_rgba(239,68,68,0.5)]">
+                          {item.badge}
+                        </span>
+                      )}
                     </Link>
                   );
                 })
@@ -165,10 +174,17 @@ export default function Header() {
                         key={item.id}
                         to={item.path}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`flex items-center gap-3 text-xl ${isActive ? 'text-[#00e5ff] font-bold' : 'text-white/90 font-medium'}`}
+                        className={`flex items-center justify-between text-xl ${isActive ? 'text-[#00e5ff] font-bold' : 'text-white/90 font-medium'}`}
                       >
-                        <Icon size={24} className={isActive ? 'text-[#00e5ff]' : 'text-white/70'} />
-                        {item.label}
+                        <div className="flex items-center gap-3">
+                          <Icon size={24} className={isActive ? 'text-[#00e5ff]' : 'text-white/70'} />
+                          {item.label}
+                        </div>
+                        {item.badge && (
+                          <span className="w-6 h-6 flex items-center justify-center bg-red-500 text-white text-xs font-bold rounded-full border border-black shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                            {item.badge}
+                          </span>
+                        )}
                       </Link>
                     );
                   })

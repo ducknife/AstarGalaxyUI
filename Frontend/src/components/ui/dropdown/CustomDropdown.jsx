@@ -26,11 +26,11 @@ export default function CustomDropdown({ label, options, onSelect, selectedValue
           className={
             variant === 'nav' 
               ? "inline-flex items-center gap-1 text-[0.9rem] font-medium text-white hover:text-white transition-colors duration-200 py-2 group-hover:text-white"
-              : "inline-flex justify-between w-full rounded-xl border border-white/10 bg-[#1b1b1b] px-4 py-3 text-sm font-medium text-white shadow-sm hover:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-[#00e5ff] transition-all duration-200"
+              : "inline-flex justify-between items-center w-full rounded-xl border border-white/10 bg-[#1b1b1b] px-4 py-2.5 text-sm font-medium text-white hover:border-white/20 hover:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-[#00e5ff] transition-all duration-200"
           }
         >
-          {selectedOption ? selectedOption.label : label}
-          <span className={`ml-2 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
+          <span className="truncate">{selectedOption ? selectedOption.label : label}</span>
+          <span className={`ml-2 flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
         </button>
       </div>
 
@@ -42,7 +42,6 @@ export default function CustomDropdown({ label, options, onSelect, selectedValue
                 key={option.value}
                 onClick={() => {
                   onSelect(option.value);
-                  setIsOpen(false);
                 }}
                 className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-150 ${
                   selectedValue === option.value

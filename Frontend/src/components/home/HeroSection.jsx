@@ -1,5 +1,5 @@
 import React from 'react';
-import FluidStream from '../../FluidStream';
+import FluidStream from '../ui/FluidStream';
 
 export default function HeroSection() {
   return (

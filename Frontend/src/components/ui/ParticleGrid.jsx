@@ -28,7 +28,7 @@ export default function ParticleGrid() {
     const DOT_SPACING = 16          // max density
     const DOT_RADIUS = 1.0
     const DOT_OPACITY = 0.18
-    const INFLUENCE_RADIUS = 400   // wider area of effect
+    const INFLUENCE_RADIUS = 600   // wider area of effect
     const MAX_DISPLACEMENT_X = 80  // Wide black hole
     const MAX_DISPLACEMENT_Y = 20  // Shorter height (original was 14)
     const MOUSE_SMOOTH = 0.28      // very smooth cursor trail

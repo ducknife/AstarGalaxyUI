@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import CustomDropdown from '../../components/ui/dropdown/CustomDropdown';
 import ProductCard from '../../components/ui/cards/ProductCard';
+import Search from '../../components/ui/search/Search';
 
 const mockProducts = [
   { id: 1, name: 'Astar Fighter Mk 1', category: 'Spacecraft', price: '$1500', rating: 4.8, sold: 123, shortDes: 'Advanced interstellar spacecraft with warp capabilities and AI navigation.' },
@@ -39,17 +40,25 @@ export default function Products() {
       </h1>
       <p className="text-white/90 mb-8" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)' }}>Browse our advanced catalog from across the galaxy.</p>
       
-      {/* Filters & Sorting */}
-      <div className="flex gap-4 mb-8 p-4 rounded-xl">
-        <div className="w-[250px]">
-          <CustomDropdown 
-            label="Sort Options"
-            options={sortOptions}
-            selectedValue={sortOption}
-            onSelect={setSortOption}
-          />
+      {/* Search, Filters & Sorting */}
+      <div className="flex flex-col lg:flex-row gap-4 mb-8 relative z-30 w-full items-center">
+        <div className="flex-1 w-full">
+          <Search placeholder="Search for spacecraft, robots, or components..." />
         </div>
-        <button className="bg-[#1b1b1b] hover:bg-[#252525] text-white rounded-xl px-6 py-3 border border-white/10 transition-colors font-medium cursor-pointer">Filters</button>
+        
+        <div className="flex gap-4 w-full lg:w-auto">
+          <div className="flex-1 lg:w-[220px]">
+            <CustomDropdown 
+              label="Sort Options"
+              options={sortOptions}
+              selectedValue={sortOption}
+              onSelect={setSortOption}
+            />
+          </div>
+          <button className="bg-[#1b1b1b] hover:bg-[#00e5ff] text-white hover:text-black rounded-full px-8 py-3 border border-white/10 hover:border-[#00e5ff] transition-all font-medium cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.5)] shrink-0">
+            Filters
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

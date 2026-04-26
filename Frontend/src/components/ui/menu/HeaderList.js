@@ -1,4 +1,4 @@
-import { User, Package, Heart, Ticket, Star, Settings } from 'lucide-react';
+import { User, Package, Heart, Ticket, Star, Settings, Bell } from 'lucide-react';
 
 export const clientMenu = [
   {
@@ -46,6 +46,7 @@ export const clientMenu = [
 
 export const userProfileMenu = [
   { id: 'my-profile', label: 'My Profile', path: '/user/profile', icon: User },
+  { id: 'notifications', label: 'Notifications', path: '/user/notifications', icon: Bell, badge: 3 },
   { id: 'my-orders', label: 'Purchase History', path: '/user/orders', icon: Package },
   { id: 'my-wishlist', label: 'My Wishlist', path: '/user/wishlist', icon: Heart },
   { id: 'my-vouchers', label: 'My Vouchers', path: '/user/vouchers', icon: Ticket },
