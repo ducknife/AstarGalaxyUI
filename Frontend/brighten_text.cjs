@@ -31,6 +31,7 @@ walkDir('./src', function(filePath) {
 
         // Also change some specific very dark text colors from #1b1b1b or similar if any exist and need to be lighter? 
         // No, the issue is text-white with low opacity.
+        // 
 
         if (content !== newContent) {
             fs.writeFileSync(filePath, newContent, 'utf8');
