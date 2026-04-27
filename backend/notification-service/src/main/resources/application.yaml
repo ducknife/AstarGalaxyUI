@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: notification-service
+
+mongock: 
+  migration-scan-package: com.astar.notification_service.changelogs

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ai-chatbot-service
+  flyway: 
+    enabled: true
+    baseline-on-migrate: true

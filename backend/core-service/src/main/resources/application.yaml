@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: AstarGalaxy
+
+mongock:
+  migration-scan-package: com.astar.AstarGalaxy.changelogs
