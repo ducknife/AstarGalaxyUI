@@ -1,6 +1,25 @@
 spring:
     application:
         name: AstarGalaxy
+    main: 
+        allow-bean-definition-overriding: true
+    data:
+        mongodb:
+            uri: ${CORE_SERVICE_URI:}
 
 mongock:
   migration-scan-package: com.astar.AstarGalaxy.changelogs
+
+admin: 
+    username: admin
+    password: admin
+    full-name: administrator
+    role: ROLE_ADMIN
+    status: ACTIVE
+    email: admin@alandas.site
+
+jwt: 
+    issuer: alandas.site 
+    secret-key: ${JWT_SECRET:}
+    access-token-expiration: 3600
+    refresh-token-expiration: 604800
